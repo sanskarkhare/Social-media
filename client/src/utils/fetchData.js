@@ -34,3 +34,4 @@ export const deletetDataApi = async(url, token) => {
     })
     return res;
 }
+
