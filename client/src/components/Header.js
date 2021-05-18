@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {logout} from '../redux/actions/authActions'
+import { GLOBALTYPES } from "../redux/actions/globalTypes";
+import Avatar from './Avatar';
 
 const navLinks = [
   {label:'Home',icon:'home', path:'/'},
@@ -9,16 +13,27 @@ const navLinks = [
 ]
 
 const Header = () => {
+
+  const { auth, theme } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  const isActive = (pn) => {
+    if(pn === pathname) return 'active';
+  }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between align-middle">
   <div className="container-fluid">
-    <a className="navbar-brand" href="#">Social-Media</a>
+    <Link className="text-decoration-none" to='/'>
+      <h1 className="navbar-brand text-uppercase p-0 m-0">Social-Media</h1>
+    </Link>
 
     <div className="menu">
       <ul className="navbar-nav flex-row">
       {
         navLinks.map((link, index) => (
-          <li className="nav-item active">
+          <li className={`nav-item px-2 ${isActive(link.path)}`} key={index}>
             <Link className="nav-link" to={link.path}>
               <span className="material-icons">
                 {link.icon}
@@ -28,17 +43,22 @@ const Header = () => {
         ))
       }
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+          <span className="nav-link dropdown-toggle" id="navbarDropdown" 
           role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <Avatar src={auth.user.avatar}/>
+          </span>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           
-            <li><a className="dropdown-item" href="#">Profile</a></li>
-            <li><a className="dropdown-item" href="#">Dark Mode</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Logout</a></li>
-          </ul>
+            <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>Profile</Link>
+            <label htmlFor='theme' className="dropdown-item"
+            onClick={() => dispatch({
+              type: GLOBALTYPES.THEME, payload: !theme
+              })}
+            >{theme ? 'Light Mode': 'Dark Mode'}</label>
+
+            <div className="dropdown-divider"></div>
+            <Link className="dropdown-item" to='/' onClick={() => dispatch(logout())}>Logout</Link>
+          </div>
         </li>
        
       </ul>

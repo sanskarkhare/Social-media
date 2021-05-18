@@ -109,7 +109,7 @@ return (
 
             <p className="my-2">
                 You already have an account?
-                <Link to="/login" style={{color:"crimson"}}>Login Now</Link>
+                <Link to="/" style={{color:"crimson"}}>Login Now</Link>
             </p>       
          </form>
      </div>

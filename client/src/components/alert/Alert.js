@@ -10,7 +10,7 @@ const Notify = () => {
     const dispatch = useDispatch();
 
     return (
-        <>
+        <div>
           {alert.loading && <Loading />}
           
           {
@@ -28,7 +28,7 @@ const Notify = () => {
               bgColor="bg-success"
             />
           }
-        </>
+        </div>
     )
 }
 
