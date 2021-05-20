@@ -6,7 +6,7 @@ import Home from './pages/home';
 import Alert from "./components/alert/Alert";
 import { refreshToken } from './redux/actions/authActions'
 import { useSelector, useDispatch } from 'react-redux';
-import Header from './components/Header';
+import Header from './components/header/Header';
 
 function App() {
 
