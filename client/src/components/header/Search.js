@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getDataApi } from '../../utils/fetchData';
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";

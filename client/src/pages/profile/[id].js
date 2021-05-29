@@ -10,7 +10,7 @@ const Profile = () => {
     return (
         <div>
         {profile.loading 
-            ? <img src={LoadIcon} alt='loading' />
+            ? <img src={LoadIcon} className='d-block mx-auto my-4' alt='loading' />
             : <Info /> 
         }
            
