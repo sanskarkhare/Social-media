@@ -41,16 +41,16 @@ const Info = () => {
                                     ? <button className="btn btn-outline-info" onClick={() => setOnEdit(true)}>
                                     Edit Profile
                                     </button>
-                                    : <FollowBtn />
+                                    : <FollowBtn user={user}/>
                                 }
                                 
                             </div>
 
                             <div className="follow_btn">
-                                <span className="mr-4">
+                                <span className="me-4">
                                     {user.followers.length} Followers
                                 </span>
-                                <span className="ml-4">
+                                <span className="ms-4">
                                     {user.following.length} Following
                                 </span>
                             </div>
