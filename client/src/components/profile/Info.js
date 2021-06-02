@@ -5,6 +5,8 @@ import EditPofile from "./EditProfile";
 import Avatar from "../Avatar";
 import { getProfileUsers } from "../../redux/actions/profileActions";
 import FollowBtn from '../FollowBtn';
+import Followers from './Followers';
+import Following from './Following';
 
 const Info = () => {
 
@@ -14,6 +16,9 @@ const Info = () => {
 
     const [userData, setUserData] = useState([])
     const [onEdit, setOnEdit] = useState(false)
+
+    const [showFollowers, setShowFollowers] = useState(false)
+    const [showFollowing, setShowFollowing] = useState(false)
 
     useEffect(() => {
         if(id === auth.user._id){
@@ -47,10 +52,10 @@ const Info = () => {
                             </div>
 
                             <div className="follow_btn">
-                                <span className="me-4">
+                                <span className="me-4" onClick={() => setShowFollowers(true)}>
                                     {user.followers.length} Followers
                                 </span>
-                                <span className="ms-4">
+                                <span className="ms-4" onClick={() => setShowFollowing(true)}>
                                     {user.following.length} Following
                                 </span>
                             </div>
@@ -68,6 +73,20 @@ const Info = () => {
 
                         {
                             onEdit && <EditPofile setOnEdit={setOnEdit}/>
+                        }
+                        {
+                            showFollowers && 
+                            <Followers 
+                                users={user.followers}
+                                setShowFollowers={setShowFollowers}
+                            />
+                        }
+                        {
+                            showFollowing && 
+                            <Following 
+                                users={user.following}
+                                setShowFollowing={setShowFollowing}
+                            />
                         }
                     </div>
                ))
