@@ -30,7 +30,7 @@ const FollowBtn = ({user}) => {
         if(load) return;
         setFollowed(false)
         setLoad(true)
-        dispatch(unFollow({users: profile.users, user, auth}))
+        await dispatch(unFollow({users: profile.users, user, auth}))
         setLoad(false)
     }
 
